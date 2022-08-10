@@ -18,7 +18,6 @@ const app = Vue.createApp({
     getAnswer: function() {
 
       if(this.keyword === '') {
-        console.log('karamoji')
         this.items = null
         return
       }
