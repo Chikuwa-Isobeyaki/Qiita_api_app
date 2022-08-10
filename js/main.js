@@ -6,12 +6,19 @@ const app = Vue.createApp({
   }),
 
   watch: {
+    keyword: function(newKeyword, oldKeyword) {
+      console.log(newKeyword)
+      this.message = "Waiting for you stop typing..."
+      // lodash.jsのdebounceメソッドでkeywordが変化する度にリクエストを送るのを防ぐ
+      this.debouncedGetAnswer()
+    }
 
   },
 
   mounted: function() {
-    this.keyword = 'JavaScript'
-    this.getAnswer()
+    // this.keyword = 'JavaScript'
+    // this.getAnswer()
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 1000)
   },
 
   methods: {
